@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html
+  lang="ko"
+  xmlns="http://www.thymeleaf.org"
+  xmlns:layout="http://ultraq.net.nx/thymeleaf/layout"
+  layout:decorate="~{/home}"
+>
+  <section layout:fragment="content">
+    <link
+      rel="stylesheet"
+      href="../../../static/css/list.css"
+      th:href="@{/static/css/list.css}"
+    />
+    <section class="gallery">
+      <a href="../input.html" th:href="@{/insert}">이미지 업로드</a>
+    </section>
+    <section class="gallery container">
+      <div class="gallery card" th:each="GA:${GALLERYS}">
+        <div>
+          <a
+             th:href="@{/upload/{image}(image=${GA.g_up_image})}"
+            target="_new"
+          >
+            <img
+              th:src="@{/upload/{image}(image=${GA.g_up_image})}"
+              src="../../../static/images/noimage.png"
+              width="100px"
+              th:alt="@{GA.g_original_Image}"
+            />
+          </a>
+        </div>
+          <div class="gallery card" th:each="IMG:${IMAGE}">
+        <div>
+          <a
+             th:href="@{/upload/{image}(image=${IMG.i_up_image})}"
+            target="_new"
+          >
+            <img
+              th:src="@{/upload/{image}(image=${IMG.i_up_image})}"
+              src="../../../static/images/noimage.png"
+              width="100px"
+              th:alt="@{IMG.i_original_Image}"
+            />
+          </a>
+        </div>
+
+        <h3 th:text="${GA.g_subject}" class="gallery subject">
+          이미지 제목
+        </h3>
+      </div>
+    </section>
+  </section>
+
+</html>
+
+
